@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		2F52DF282ECD9A4F00C7EF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F52DF112ECD9A4D00C7EF4A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F52DF182ECD9A4D00C7EF4A;
+			remoteInfo = "RC Battery Randomizer";
+		};
+		2F52DF322ECD9A4F00C7EF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F52DF112ECD9A4D00C7EF4A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F52DF182ECD9A4D00C7EF4A;
+			remoteInfo = "RC Battery Randomizer";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2F52DF192ECD9A4D00C7EF4A /* RC Battery Randomizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RC Battery Randomizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F52DF272ECD9A4F00C7EF4A /* RC Battery RandomizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RC Battery RandomizerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F52DF312ECD9A4F00C7EF4A /* RC Battery RandomizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RC Battery RandomizerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2F52DF1B2ECD9A4D00C7EF4A /* RC Battery Randomizer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "RC Battery Randomizer";
+			sourceTree = "<group>";
+		};
+		2F52DF2A2ECD9A4F00C7EF4A /* RC Battery RandomizerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "RC Battery RandomizerTests";
+			sourceTree = "<group>";
+		};
+		2F52DF342ECD9A4F00C7EF4A /* RC Battery RandomizerUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "RC Battery RandomizerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F52DF162ECD9A4D00C7EF4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F52DF242ECD9A4F00C7EF4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F52DF2E2ECD9A4F00C7EF4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F52DF102ECD9A4D00C7EF4A = {
+			isa = PBXGroup;
+			children = (
+				2F52DF1B2ECD9A4D00C7EF4A /* RC Battery Randomizer */,
+				2F52DF2A2ECD9A4F00C7EF4A /* RC Battery RandomizerTests */,
+				2F52DF342ECD9A4F00C7EF4A /* RC Battery RandomizerUITests */,
+				2F52DF1A2ECD9A4D00C7EF4A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2F52DF1A2ECD9A4D00C7EF4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F52DF192ECD9A4D00C7EF4A /* RC Battery Randomizer.app */,
+				2F52DF272ECD9A4F00C7EF4A /* RC Battery RandomizerTests.xctest */,
+				2F52DF312ECD9A4F00C7EF4A /* RC Battery RandomizerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2F52DF182ECD9A4D00C7EF4A /* RC Battery Randomizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F52DF3B2ECD9A4F00C7EF4A /* Build configuration list for PBXNativeTarget "RC Battery Randomizer" */;
+			buildPhases = (
+				2F52DF152ECD9A4D00C7EF4A /* Sources */,
+				2F52DF162ECD9A4D00C7EF4A /* Frameworks */,
+				2F52DF172ECD9A4D00C7EF4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2F52DF1B2ECD9A4D00C7EF4A /* RC Battery Randomizer */,
+			);
+			name = "RC Battery Randomizer";
+			packageProductDependencies = (
+			);
+			productName = "RC Battery Randomizer";
+			productReference = 2F52DF192ECD9A4D00C7EF4A /* RC Battery Randomizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2F52DF262ECD9A4F00C7EF4A /* RC Battery RandomizerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F52DF3E2ECD9A4F00C7EF4A /* Build configuration list for PBXNativeTarget "RC Battery RandomizerTests" */;
+			buildPhases = (
+				2F52DF232ECD9A4F00C7EF4A /* Sources */,
+				2F52DF242ECD9A4F00C7EF4A /* Frameworks */,
+				2F52DF252ECD9A4F00C7EF4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F52DF292ECD9A4F00C7EF4A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2F52DF2A2ECD9A4F00C7EF4A /* RC Battery RandomizerTests */,
+			);
+			name = "RC Battery RandomizerTests";
+			packageProductDependencies = (
+			);
+			productName = "RC Battery RandomizerTests";
+			productReference = 2F52DF272ECD9A4F00C7EF4A /* RC Battery RandomizerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2F52DF302ECD9A4F00C7EF4A /* RC Battery RandomizerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F52DF412ECD9A4F00C7EF4A /* Build configuration list for PBXNativeTarget "RC Battery RandomizerUITests" */;
+			buildPhases = (
+				2F52DF2D2ECD9A4F00C7EF4A /* Sources */,
+				2F52DF2E2ECD9A4F00C7EF4A /* Frameworks */,
+				2F52DF2F2ECD9A4F00C7EF4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F52DF332ECD9A4F00C7EF4A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2F52DF342ECD9A4F00C7EF4A /* RC Battery RandomizerUITests */,
+			);
+			name = "RC Battery RandomizerUITests";
+			packageProductDependencies = (
+			);
+			productName = "RC Battery RandomizerUITests";
+			productReference = 2F52DF312ECD9A4F00C7EF4A /* RC Battery RandomizerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F52DF112ECD9A4D00C7EF4A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					2F52DF182ECD9A4D00C7EF4A = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					2F52DF262ECD9A4F00C7EF4A = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 2F52DF182ECD9A4D00C7EF4A;
+					};
+					2F52DF302ECD9A4F00C7EF4A = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 2F52DF182ECD9A4D00C7EF4A;
+					};
+				};
+			};
+			buildConfigurationList = 2F52DF142ECD9A4D00C7EF4A /* Build configuration list for PBXProject "RC Battery Randomizer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2F52DF102ECD9A4D00C7EF4A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2F52DF1A2ECD9A4D00C7EF4A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2F52DF182ECD9A4D00C7EF4A /* RC Battery Randomizer */,
+				2F52DF262ECD9A4F00C7EF4A /* RC Battery RandomizerTests */,
+				2F52DF302ECD9A4F00C7EF4A /* RC Battery RandomizerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F52DF172ECD9A4D00C7EF4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F52DF252ECD9A4F00C7EF4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F52DF2F2ECD9A4F00C7EF4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F52DF152ECD9A4D00C7EF4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F52DF232ECD9A4F00C7EF4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F52DF2D2ECD9A4F00C7EF4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F52DF292ECD9A4F00C7EF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F52DF182ECD9A4D00C7EF4A /* RC Battery Randomizer */;
+			targetProxy = 2F52DF282ECD9A4F00C7EF4A /* PBXContainerItemProxy */;
+		};
+		2F52DF332ECD9A4F00C7EF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F52DF182ECD9A4D00C7EF4A /* RC Battery Randomizer */;
+			targetProxy = 2F52DF322ECD9A4F00C7EF4A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2F52DF392ECD9A4F00C7EF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2F52DF3A2ECD9A4F00C7EF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		2F52DF3C2ECD9A4F00C7EF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "RC Battery Randomizer/RC_Battery_Randomizer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prompt-AND-pleasant.RC-Battery-Randomizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2F52DF3D2ECD9A4F00C7EF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "RC Battery Randomizer/RC_Battery_Randomizer.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prompt-AND-pleasant.RC-Battery-Randomizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2F52DF3F2ECD9A4F00C7EF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prompt-AND-pleasant.RC-Battery-RandomizerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RC Battery Randomizer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RC Battery Randomizer";
+			};
+			name = Debug;
+		};
+		2F52DF402ECD9A4F00C7EF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prompt-AND-pleasant.RC-Battery-RandomizerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RC Battery Randomizer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RC Battery Randomizer";
+			};
+			name = Release;
+		};
+		2F52DF422ECD9A4F00C7EF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prompt-AND-pleasant.RC-Battery-RandomizerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "RC Battery Randomizer";
+			};
+			name = Debug;
+		};
+		2F52DF432ECD9A4F00C7EF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV6XZRRY3Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.prompt-AND-pleasant.RC-Battery-RandomizerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "RC Battery Randomizer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F52DF142ECD9A4D00C7EF4A /* Build configuration list for PBXProject "RC Battery Randomizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F52DF392ECD9A4F00C7EF4A /* Debug */,
+				2F52DF3A2ECD9A4F00C7EF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F52DF3B2ECD9A4F00C7EF4A /* Build configuration list for PBXNativeTarget "RC Battery Randomizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F52DF3C2ECD9A4F00C7EF4A /* Debug */,
+				2F52DF3D2ECD9A4F00C7EF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F52DF3E2ECD9A4F00C7EF4A /* Build configuration list for PBXNativeTarget "RC Battery RandomizerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F52DF3F2ECD9A4F00C7EF4A /* Debug */,
+				2F52DF402ECD9A4F00C7EF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F52DF412ECD9A4F00C7EF4A /* Build configuration list for PBXNativeTarget "RC Battery RandomizerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F52DF422ECD9A4F00C7EF4A /* Debug */,
+				2F52DF432ECD9A4F00C7EF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F52DF112ECD9A4D00C7EF4A /* Project object */;
+}

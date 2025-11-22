@@ -21,82 +21,108 @@ struct RC_Battery_RandomizerApp: App {
     
 }
 
+extension NSImage {
+    // Static function allows this to be a class-level function instead of instance-level
+    static func batteryIcon(percentage: Int) -> NSImage? {
+        //
+        guard let baseSymbol = NSImage(systemSymbolName: "battery.0percent", accessibilityDescription: "Battery") else {
+            return nil
+        }
+        let baseConfig = NSImage.SymbolConfiguration(
+            pointSize: 19.5,
+            weight: .light
+        )
+        let dimWhite: NSColor = .systemFill.withAlphaComponent(0.75)
+        let colorConfig = NSImage.SymbolConfiguration(paletteColors: [dimWhite])
+        let combinedConfig = baseConfig.applying(colorConfig)
+        guard let configuredSymbol = baseSymbol.withSymbolConfiguration(combinedConfig) else {
+            return nil
+        }
+        let size = configuredSymbol.size
+        
+        let newImage = NSImage(size: size)
+        
+        // TODO: Why lockFocus?
+        newImage.lockFocus()
+        
+        NSColor.white.setFill()
+        configuredSymbol.draw(at: .zero, from: NSRect(origin: .zero, size: size), operation: .sourceOver, fraction: 1.0)
+        
+        // TODO: Why defer?
+        defer { newImage.unlockFocus() }
+        
+        let fillStartX = 4.5
+        let fillEndX = size.width - 8.0
+        let fillY = 3.5
+        let fillHeight = size.height - 7.75
+        let fillWidth = (fillEndX - fillStartX) * CGFloat(min(100, max(0, percentage))) / 100.0
+
+        NSGraphicsContext.current?.saveGraphicsState()
+        
+        
+        // Clear the background for when percent changes
+        NSColor.clear.setFill()
+        NSRect(origin: .zero, size: size).fill()
+        
+        NSColor.white.setFill()
+        
+        let fillRect = NSRect(x: fillStartX, y: fillY, width: fillWidth, height: fillHeight)
+        let path = NSBezierPath(roundedRect: fillRect, xRadius: 2.0, yRadius: 2.0)
+        path.addClip()
+        
+        fillRect.fill()
+        
+        NSGraphicsContext.current?.restoreGraphicsState()
+        
+        return newImage
+    }
+}
+
 class RCBatteryAppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?
-    var currentStatus: BatteryStatus?
+    var currentLevel: Int = 100
+    var timer: Timer?
     
-    struct BatteryDisplayData: Hashable {
-        var icon: String
-        var colors: [NSColor]
-        var minLevel: Int?
-    }
-    enum BatteryStatus: CaseIterable {
-        case charging, full, high, medium, low, empty
-        func displayData () -> BatteryDisplayData {
-            switch self {
-            case .charging:
-                return BatteryDisplayData(icon: "battery.100percent.bolt", colors: [.systemFill, .systemFill, .systemGreen], minLevel: nil)
-            case .full:
-                return BatteryDisplayData(icon: "battery.100percent", colors: [.systemGreen], minLevel: 100)
-            case .high:
-                return BatteryDisplayData(icon: "battery.75percent", colors: [.systemGreen], minLevel: 75)
-            case .medium:
-                return BatteryDisplayData(icon: "battery.50percent", colors: [.systemYellow], minLevel: 50)
-            case .low:
-                return BatteryDisplayData(icon: "battery.25percent", colors: [.systemRed], minLevel: 25)
-            case.empty:
-                return BatteryDisplayData(icon: "battery.0percent", colors: [.systemFill], minLevel: 0)
-            }
-        }
-    }
-    
-    func generateTitle(button: NSStatusBarButton, type: BatteryStatus) -> Void {
-        let data: BatteryDisplayData = type.displayData()
-        let minLevel = data.minLevel
-        if let minLevel {
-            button.font = .menuBarFont(ofSize: 11) // Similar to official battery bar
-            button.title = "\(minLevel)%"
-        }
-    }
-    
-    func generateImage(button: NSStatusBarButton, type: BatteryStatus) -> Void {
-        let data: BatteryDisplayData = type.displayData()
-        let imageConfig = NSImage.SymbolConfiguration(pointSize: 20, weight: .ultraLight)
-        let colorConfig = NSImage.SymbolConfiguration(paletteColors: data.colors)
-        let combinedConfig = imageConfig.applying(colorConfig)
-        let image = NSImage(systemSymbolName: data.icon, accessibilityDescription: "Battery Level")?.withSymbolConfiguration(combinedConfig)
-        button.image = image
-        button.image?.isTemplate = true // enable icon to update color with the rest of the status bar, easily
-        button.imagePosition = .imageRight // set icon to the right of the text, like the official layout, applying .rightToLeft to the button causes the icon to switch it's display based on the localization
-        button.imageHugsTitle = true
+    func generateTitle(button: NSStatusBarButton) -> Void {
+        button.font = .menuBarFont(ofSize: 11) // Similar to official battery bar
+        button.title = "\(currentLevel)%"
     }
     
     @objc func handleClick(_ sender: NSStatusBarButton) {
-        let index = BatteryStatus.allCases.firstIndex(of: currentStatus ?? .charging) ?? 0
-        let limit = BatteryStatus.allCases.count
-        let newType = BatteryStatus.allCases[(index + 1) % limit]
-        updateButton(button: sender, type: newType)
     }
     
-    func updateButton(button: NSStatusBarButton, type: BatteryStatus) -> Void {
-        generateTitle(button: button, type: type)
-        generateImage(button: button, type: type)
-        currentStatus = type
+    func updateButton(button: NSStatusBarButton) -> Void {
+        generateTitle(button: button)
+        button.image = NSImage.batteryIcon(percentage: currentLevel)
+    }
+    
+    func updateBatteryLevel(button: NSStatusBarButton) -> Void {
+        currentLevel -= 1
+        updateButton(button: button)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem?.button {
+            if (timer == nil) {
+                timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+                    if self.currentLevel > 0 {
+                        self.updateBatteryLevel(button: button)
+                    } else {
+                        self.currentLevel = 100
+                        self.timer?.invalidate()
+                        self.timer = nil
+                    }
+                })
+            }
+            updateButton(button: button)
+            button.image?.isTemplate = true // PRESENTATION: Allows image to change color dynamically
+            button.imagePosition = .imageRight
             button.action = #selector(handleClick(_:))
             button.target = self
-            updateButton(button: button, type: .full)
+            
+            
         }
-        
-//        let menu = NSMenu(title: "Battery")
-//        
-//        menu.addItem(withTitle: "Battery 25%", action: nil, keyEquivalent: "")
-//        
-//        statusItem?.menu = menu
     }
 }
 

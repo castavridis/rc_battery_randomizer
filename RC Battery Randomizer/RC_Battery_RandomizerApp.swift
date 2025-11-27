@@ -71,7 +71,17 @@ extension NSImage {
     }
 
     // Static function allows this to be a class-level function instead of instance-level
-    static func batteryIcon(percentage: Int) -> NSImage? {
+    static func batteryIcon(percentage: Int, button: NSStatusBarButton, isCharging: Bool) -> NSImage? {
+        let appearanceName = button.effectiveAppearance.name.rawValue
+        
+        // Default to light mode, it takes a moment for this to update, is it possible to update faster?
+        let boltColor: NSColor =
+            (appearanceName == "NSAppearanceNameVibrantDark")
+                ? NSColor.white
+                : NSColor.black
+        let batteryColor: NSColor = boltColor.withAlphaComponent(0.65)
+        let fillColor: NSColor = (percentage <= 10) ? NSColor.systemRed : boltColor
+                
         // PRESENTATION: guard let keyword phrase
         // Doing this makes it so we don't have to pepper baseSymbol? calls all over the place
         guard let baseSymbol = NSImage(systemSymbolName: "battery.0percent", accessibilityDescription: "Battery") else {
@@ -81,8 +91,7 @@ extension NSImage {
             pointSize: 19.5,
             weight: .light
         )
-        let dimWhite: NSColor = .systemFill.withAlphaComponent(0.75)
-        let colorConfig = NSImage.SymbolConfiguration(paletteColors: [dimWhite])
+        let colorConfig = NSImage.SymbolConfiguration(paletteColors: [batteryColor])
         let combinedConfig = baseConfig.applying(colorConfig)
         guard let configuredSymbol = baseSymbol.withSymbolConfiguration(combinedConfig) else {
             return nil
@@ -94,7 +103,7 @@ extension NSImage {
         // TODO: Why lockFocus?
         newImage.lockFocus()
         
-        NSColor.systemFill.setFill()
+        fillColor.setFill()
         configuredSymbol.draw(at: .zero, from: NSRect(origin: .zero, size: size), operation: .sourceOver, fraction: 1.0)
         
         // TODO: Why defer?
@@ -110,11 +119,13 @@ extension NSImage {
         
         NSGraphicsContext.current?.saveGraphicsState()
         
-        NSColor.white.setFill()
+        fillColor.setFill()
         
         let fillRect = NSRect(x: fillStartX, y: fillY, width: fillWidth, height: fillHeight)
-        let path = NSBezierPath(roundedRect: fillRect, xRadius: 2.0, yRadius: 2.0)
-        path.addClip() // must add clip before fill otherwise fill will not be clipped
+        if (percentage > 0) {
+            let path = NSBezierPath(roundedRect: fillRect, xRadius: 2.0, yRadius: 2.0)
+            path.addClip() // must add clip before fill otherwise fill will not be clipped
+        }
         fillRect.fill()
         
         // There's an approach to sutracting the an NSImage from an NSRect using operation configuredSymbol.draw(in: NSRect(origin: .zero, size: size), from: NSRect(origin: .zero, size: size), operation: .destinationIn, fraction: 1.0)
@@ -138,23 +149,31 @@ extension NSImage {
 //        shadow.shadowBlurRadius = 1.0
 //        shadow.set()
         
-        guard let bolt = NSImage(systemSymbolName: "bolt.fill", accessibilityDescription: "bolt") else {
-            return nil
+        if (isCharging) {
+            guard let bolt = NSImage(systemSymbolName: "bolt.fill", accessibilityDescription: "bolt") else {
+                return nil
+            }
+            
+            let boltFontConfig = NSImage.SymbolConfiguration(pointSize: 10, weight: .black)
+            let boltColorConfig = NSImage.SymbolConfiguration(paletteColors: [boltColor])
+            let boltConfig = boltFontConfig.applying(boltColorConfig)
+            guard let configuredBolt = bolt.withSymbolConfiguration(boltConfig) else { return nil }
+            configuredBolt.withSmoothOutline(color: .green, width: 1.0).draw(at: .zero, from: NSRect(origin: CGPoint(x: -7.5, y: 1.5), size: size), operation: .destinationOut, fraction: 1.0)
+            configuredBolt.draw(at: .zero, from: NSRect(origin: CGPoint(x: -9.0, y: 0.125), size: size), operation: .sourceOver, fraction: 1.0)
         }
-        
-        let boltConfig = NSImage.SymbolConfiguration(pointSize: 12, weight: .black)
-        guard let configuredBolt = bolt.withSymbolConfiguration(boltConfig) else { return nil }
-        configuredBolt.withSmoothOutline(color: .green, width: 1.0).draw(at: .zero, from: NSRect(origin: CGPoint(x: -7.125, y: 2.25), size: size), operation: .destinationOut, fraction: 1.0)
-        configuredBolt.draw(at: .zero, from: NSRect(origin: CGPoint(x: -8.5, y: 0.75), size: size), operation: .sourceOver, fraction: 1.0)
         
         return newImage
     }
 }
 
 class RCBatteryAppDelegate: NSObject, NSApplicationDelegate {
+    private var observer: Any! // PRESENTATION: set an observer for .effectiveAppearance
+    private var sharedObserver: Any!
     var statusItem: NSStatusItem?
     var currentLevel: Int = 100
     var timer: Timer?
+    var timerSpeed: Double = 1.0
+    var isCharging: Bool = false
     
     func generateTitle(button: NSStatusBarButton) -> Void {
         button.font = .menuBarFont(ofSize: 11) // Similar to official battery bar
@@ -163,8 +182,9 @@ class RCBatteryAppDelegate: NSObject, NSApplicationDelegate {
     
     func updateButton(button: NSStatusBarButton) -> Void {
         generateTitle(button: button)
-        button.image = NSImage.batteryIcon(percentage: currentLevel)
-        button.image?.isTemplate = true // PRESENTATION: Allows image to change color dynamically, have to set everytime the image changes
+        button.image = NSImage.batteryIcon(percentage: currentLevel, button: button, isCharging: isCharging)
+        // button.image?.isTemplate = true // PRESENTATION: Allows image to change color dynamically, have to set everytime the image changes
+        // PRESENTATION .isTemplate is an all or nothing for NSImage
     }
     
     func updateBatteryLevel(button: NSStatusBarButton) -> Void {
@@ -174,10 +194,15 @@ class RCBatteryAppDelegate: NSObject, NSApplicationDelegate {
     
     // PRESENTATION: @objc and #selector why?
     // https://developer.apple.com/documentation/swift/using-objective-c-runtime-features-in-swift
-    @objc func handleClick(_ item: String) {
-        print("Clicked!")
+    @objc func handleClick(_ sender: NSMenuItem) {
+        timerSpeed = 0.25
+        currentLevel = 75
     }
-    
+    @objc func toggleCharging(_ sender: NSMenuItem) {
+        isCharging = !isCharging
+        sender.attributedTitle = NSAttributedString(string: isCharging ? "Power Source: Adapter\n2h 31m until fully charged" : "Power Source: Battery", attributes: [.foregroundColor: NSColor.black.withAlphaComponent(0.5), .font: NSFont.systemFont(ofSize: 12)])
+    }
+        
     func createMenu(statusItem: NSStatusItem?) {
         if statusItem == nil { return }
         
@@ -185,24 +210,39 @@ class RCBatteryAppDelegate: NSObject, NSApplicationDelegate {
         
         let titleItem = NSMenuItem(title: "", action: #selector(handleClick(_:)), keyEquivalent: "")
         titleItem.isEnabled = false
-        titleItem.attributedTitle = NSAttributedString(string: "Battery", attributes: [.foregroundColor: NSColor.labelColor, .font: NSFont.systemFont(ofSize: 13, weight: .semibold)]) // PRESENTATION:
+        titleItem.attributedTitle = NSAttributedString(string: "Battery\t\t\t\t\t\t\t\t", attributes: [.foregroundColor: NSColor.labelColor, .font: NSFont.systemFont(ofSize: 13, weight: .semibold), .baselineOffset: -5]) // PRESENTATION:
         menu.addItem(titleItem)
         
+        // Based on my battery
+        // 67% = 1h 43m until fully charged
+        // 67% = 103 minutes
+        // 100% = 154 minutes
+        
         let subTitleItem = NSMenuItem()
-        subTitleItem.action = #selector(self.handleClick(_:))
-        subTitleItem.attributedTitle = NSAttributedString(string: "Power Source: Battery", attributes: [.foregroundColor: NSColor.labelColor, .font: NSFont.systemFont(ofSize: 12)])
+        subTitleItem.action = #selector(toggleCharging(_:))
+        subTitleItem.attributedTitle = NSAttributedString(string: isCharging ? "Power Source: Adapter\n2h 31m until fully charged" : "Power Source: Battery", attributes: [.foregroundColor: NSColor.black.withAlphaComponent(0.5), .font: NSFont.systemFont(ofSize: 12)])
         menu.addItem(subTitleItem)
         
         menu.addItem(NSMenuItem.separator())
         
-        let energyItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-        energyItem.image = NSImage(systemSymbolName: "battery.100", accessibilityDescription: nil)?.withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 17, weight: .regular))
-        energyItem.subtitle = "100%"
-        menu.addItem(energyItem)
+        let subTitleItem2 = NSMenuItem()
+        subTitleItem2.action = #selector(handleClick(_:))
+        subTitleItem2.attributedTitle = NSAttributedString(string: "Using significant energy", attributes: [.foregroundColor: NSColor.black.withAlphaComponent(0.5), .font: NSFont.systemFont(ofSize: 12, weight: .semibold)])
+        menu.addItem(subTitleItem2)
+        
+        let subTitleItem3 = NSMenuItem()
+        subTitleItem3.action = #selector(handleClick(_:))
+        subTitleItem3.image = NSImage(named: "finder_icon")
+        subTitleItem3.image?.size = CGSize(width: 17, height: 17)
+        subTitleItem3.attributedTitle = NSAttributedString(string: "Finder", attributes: [.foregroundColor: NSColor.black, .font: NSFont.systemFont(ofSize: 13, weight: .regular)])
+        menu.addItem(subTitleItem3)
         
         menu.addItem(NSMenuItem.separator())
         
-        
+        let subTitleItem4 = NSMenuItem(title: "", action: #selector(handleClick(_:)), keyEquivalent: "")
+        subTitleItem4.attributedTitle = NSAttributedString(string: "Battery Settings...", attributes: [.foregroundColor: NSColor.labelColor, .font: NSFont.systemFont(ofSize: 13, weight: .regular)])
+        menu.addItem(subTitleItem4)
+
         statusItem?.menu = menu
     }
     
@@ -211,19 +251,21 @@ class RCBatteryAppDelegate: NSObject, NSApplicationDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem?.button { // PRESENTATION: if let keyword phrase
             if (timer == nil) {
-                timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+                timer = Timer.scheduledTimer(withTimeInterval: (60.0*4.0/timerSpeed), repeats: true, block: { _ in
                     if self.currentLevel > 0 {
                         self.updateBatteryLevel(button: button)
                     } else {
-                        self.currentLevel = 100
-                        self.timer?.invalidate()
-                        self.timer = nil
+//                        self.currentLevel = 100
+//                        self.timer?.invalidate()
+//                        self.timer = nil
                     }
                 })
             }
-            updateButton(button: button)
             button.imagePosition = .imageRight
             button.target = self
+            observer = button.observe(\.effectiveAppearance) {
+                _, _ in self.updateButton(button: button) // PRESENTATION: This change is a little faster but still lags behind the rest of the menu bar
+            }
         }
         createMenu(statusItem: statusItem)
     }
